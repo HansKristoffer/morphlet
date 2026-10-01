@@ -1,0 +1,23 @@
+{
+  "cxxNamespace": ["morphlet"],
+  "ios": {
+    "iosModuleName": "Morphlet"
+  },
+  "android": {
+    "androidNamespace": ["morphlet"],
+    "androidCxxLibName": "morphlet"
+  },
+  "autolinking": {
+    "Morphlet": {
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridMorphlet"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridMorphlet"
+      }
+    }
+  },
+  "ignorePaths": ["node_modules"]
+}
