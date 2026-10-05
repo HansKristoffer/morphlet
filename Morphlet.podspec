@@ -13,17 +13,9 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => min_ios_version_supported }
   s.source       = { :git => "https://github.com/rit3zh/react-native-morphlet.git", :tag => "#{s.version}" }
 
-  s.source_files = [
-    "ios/**/*.{swift}",
-    "ios/**/*.{m,mm}",
-    "cpp/**/*.{hpp,cpp}",
-  ]
-
-  s.dependency 'React-jsi'
-  s.dependency 'React-callinvoker'
-
-  load 'nitrogen/generated/ios/Morphlet+autolinking.rb'
-  add_nitrogen_files(s)
+  s.source_files = "ios/**/*.{h,m,mm}", "common/cpp/**/*.{h,cpp}"
+  s.private_header_files = "ios/**/*.h", "common/cpp/**/*.h"
+  s.pod_target_xcconfig = { "HEADER_SEARCH_PATHS" => "\"$(PODS_TARGET_SRCROOT)/common/cpp\"" }
 
   install_modules_dependencies(s)
 end

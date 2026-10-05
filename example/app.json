@@ -1,9 +1,10 @@
 {
   "expo": {
     "name": "Morphlet Example",
-    "slug": "react-native-morphlet-example",
+    "slug": "morphlet-example",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme": "morphlet-example",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
@@ -21,6 +22,20 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-font",
+      "expo-image",
+      "expo-router",
+      "expo-status-bar",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26
+          }
+        }
+      ]
+    ]
   }
 }

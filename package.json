@@ -1,12 +1,12 @@
 {
-  "name": "react-native-morphlet",
+  "name": "morphlet",
   "version": "0.1.0",
-  "description": "testing for now.",
+  "description": "A morphing floating tray for React Native.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
     ".": {
-      "react-native-morphlet-source": "./src/index.tsx",
+      "morphlet-source": "./src/index.ts",
       "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
     },
@@ -15,15 +15,14 @@
   "files": [
     "src",
     "lib",
-    "android",
+    "common",
     "ios",
-    "cpp",
-    "nitrogen",
-    "nitro.json",
+    "android",
+    "!android/build",
+    "!android/.gradle",
     "*.podspec",
     "react-native.config.js",
     "!ios/build",
-    "!android/build",
     "!android/gradle",
     "!android/gradlew",
     "!android/gradlew.bat",
@@ -34,19 +33,24 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-morphlet-example",
+    "example": "yarn workspace morphlet-example",
     "clean": "del-cli lib",
     "prepare": "bob build",
-    "nitrogen": "nitrogen",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest",
-    "release": "release-it --only-version"
+    "release": "release-it --only-version",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "tray",
+    "drawer",
+    "bottom-sheet",
+    "family",
+    "morph",
+    "fabric"
   ],
   "repository": {
     "type": "git",
@@ -62,6 +66,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.29.9",
     "@commitlint/config-conventional": "^21.2.0",
     "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.6",
@@ -69,31 +74,40 @@
     "@jest/globals": "^29.7.0",
     "@react-native/babel-preset": "0.86.2",
     "@react-native/eslint-config": "0.86.2",
+    "@react-native/eslint-plugin": "^0.87.1",
     "@react-native/jest-preset": "0.86.2",
     "@release-it/conventional-changelog": "^12.0.0",
+    "@testing-library/react-native": "^13",
     "@types/react": "^19.2.0",
+    "@types/react-test-renderer": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.71.0",
+    "@typescript-eslint/parser": "^8.71.0",
     "commitlint": "^21.2.1",
     "del-cli": "^7.0.0",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-ft-flow": "^3.0.11",
+    "eslint-plugin-jest": "^29.16.6",
     "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-native": "^5.0.0",
+    "hermes-eslint": "^0.37.0",
     "jest": "^29.7.0",
     "lefthook": "^2.1.10",
-    "nitrogen": "^0.37.1",
     "prettier": "^3.9.6",
     "react": "19.2.3",
     "react-native": "0.86.3",
     "react-native-builder-bob": "^0.43.1",
-    "react-native-nitro-modules": "^0.37.1",
+    "react-test-renderer": "19.2.3",
     "release-it": "^21.0.1",
     "turbo": "^2.10.8",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*",
-    "react-native-nitro-modules": "^0.37.1"
+    "react-native": "*"
   },
   "workspaces": [
     "example"
@@ -103,13 +117,6 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      [
-        "custom",
-        {
-          "script": "nitrogen",
-          "clean": "nitrogen/"
-        }
-      ],
       [
         "module",
         {
@@ -137,12 +144,20 @@
       "customExportConditions": [
         "require",
         "react-native",
-        "<%- project.sourceCondition -%>"
+        "morphlet-source"
       ]
     },
+    "transformIgnorePatterns": [
+      "node_modules/(?!\\.bun/|((jest-)?react-native|@react-native(-community)?|@testing-library)/)"
+    ],
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
+      "<rootDir>/lib/",
+      "<rootDir>/inspo/",
+      "<rootDir>/apple-music-code/"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.test.ts?(x)"
     ]
   },
   "commitlint": {
@@ -170,7 +185,7 @@
     }
   },
   "create-react-native-library": {
-    "type": "nitro-view",
+    "type": "fabric-view",
     "languages": "kotlin-swift",
     "tools": [
       "eslint",
@@ -179,5 +194,26 @@
       "release-it"
     ],
     "version": "0.63.1"
+  },
+  "codegenConfig": {
+    "name": "MorphletSpec",
+    "type": "components",
+    "jsSrcsDir": "src/views",
+    "android": {
+      "javaPackageName": "com.morphlet"
+    },
+    "ios": {
+      "components": {
+        "MorphletHostView": {
+          "className": "MorphletHostView"
+        },
+        "MorphletContainerView": {
+          "className": "MorphletContainerView"
+        },
+        "MorphletSwitchView": {
+          "className": "MorphletSwitchView"
+        }
+      }
+    }
   }
 }

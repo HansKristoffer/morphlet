@@ -1,15 +1,14 @@
 const path = require('path');
 const pkg = require('../package.json');
+const library = require('../react-native.config.js');
 
 module.exports = {
   dependencies: {
     [pkg.name]: {
       root: path.join(__dirname, '..'),
       platforms: {
-        // Codegen script incorrectly fails without this
-        // So we explicitly specify the platforms with empty object
         ios: {},
-        android: {},
+        android: library.dependency.platforms.android,
       },
     },
   },
