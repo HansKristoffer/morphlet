@@ -54,14 +54,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rit3zh/react-native-morphlet.git"
+    "url": "git+https://github.com/rit3zh/morphlet.git"
   },
   "author": "rit3zh <thisismyn07@gmail.com> (https://github.com/rit3zh)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rit3zh/react-native-morphlet/issues"
+    "url": "https://github.com/rit3zh/morphlet/issues"
   },
-  "homepage": "https://github.com/rit3zh/react-native-morphlet#readme",
+  "homepage": "https://github.com/rit3zh/morphlet#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
