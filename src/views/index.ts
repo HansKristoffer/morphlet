@@ -1,7 +1,7 @@
-import MorphletContainerView from './morphlet-container-view-NativeComponent';
-import MorphletHostView from './morphlet-host-view-NativeComponent';
-import MorphletSwitchView from './morphlet-switch-view-NativeComponent';
+import MorphletContainerView from './MorphletContainerViewNativeComponent';
+import MorphletHostView from './MorphletHostViewNativeComponent';
+import MorphletSwitchView from './MorphletSwitchViewNativeComponent';
 
-export type { TInsetsChangeEvent } from './morphlet-host-view-NativeComponent';
+export type { TInsetsChangeEvent } from './MorphletHostViewNativeComponent';
 
 export { MorphletHostView, MorphletContainerView, MorphletSwitchView };
